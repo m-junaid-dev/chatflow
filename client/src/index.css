@@ -1,0 +1,161 @@
+/* ─── Google Font ───────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base reset & font ──────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+    min-height: 100dvh;
+    overflow: hidden;      /* prevent body scroll — pages manage their own scroll */
+  }
+
+  h1 { @apply text-4xl font-bold leading-tight; }
+  h2 { @apply text-2xl font-bold leading-snug; }
+  h3 { @apply text-lg font-semibold leading-snug; }
+  p  { @apply leading-relaxed; }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-teal-500 ring-offset-2;
+  }
+}
+
+/* ─── Scrollbars ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  .dark .scrollbar-thin {
+    scrollbar-color: #374151 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+}
+
+/* ─── Chat wallpaper ──────────────────────────────────────────────────────── */
+.chat-wallpaper {
+  background-color: #e8ede9;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23b8c4b9' fill-opacity='0.18'%3E%3Ccircle cx='40' cy='40' r='4'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='80' cy='0' r='4'/%3E%3Ccircle cx='0' cy='80' r='4'/%3E%3Ccircle cx='80' cy='80' r='4'/%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3Ccircle cx='60' cy='20' r='2'/%3E%3Ccircle cx='20' cy='60' r='2'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.dark .chat-wallpaper {
+  background-color: #0f1923;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='4'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='80' cy='0' r='4'/%3E%3Ccircle cx='0' cy='80' r='4'/%3E%3Ccircle cx='80' cy='80' r='4'/%3E%3Ccircle cx='20' cy='20' r='2'/%3E%3Ccircle cx='60' cy='20' r='2'/%3E%3Ccircle cx='20' cy='60' r='2'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ─── Gradient text ───────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #14b8a6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Message bubble pop-in ───────────────────────────────────────────────── */
+@keyframes bubbleIn {
+  0%   { opacity: 0; transform: scale(0.82) translateY(6px); }
+  65%  { transform: scale(1.03) translateY(-1px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.bubble-pop {
+  animation: bubbleIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ─── Typing dots ──────────────────────────────────────────────────────────── */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-5px); }
+}
+.typing-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9ca3af;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+.dark .typing-dot { background: #6b7280; }
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.18s; }
+.typing-dot:nth-child(3) { animation-delay: 0.36s; }
+
+/* ─── Skeleton shimmer ─────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+  border-radius: 8px;
+}
+.dark .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 800px 100%;
+}
+
+/* ─── Delivery tick colours ────────────────────────────────────────────────── */
+.tick-sent      { color: #94a3b8; }
+.tick-delivered { color: #94a3b8; }
+.tick-read      { color: #38bdf8; }
+
+/* ─── Unread badge ─────────────────────────────────────────────────────────── */
+.unread-badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #14b8a6, #10b981);
+  color: #fff;
+}
+
+/* ─── Context menu ─────────────────────────────────────────────────────────── */
+.context-menu {
+  @apply fixed z-[200] min-w-[160px] rounded-xl shadow-2xl overflow-hidden;
+  @apply bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700;
+}
+
+/* ─── Password strength bar ────────────────────────────────────────────────── */
+.strength-bar {
+  @apply h-1 rounded-full transition-all duration-300;
+}
+
+/* ─── Gradient button ──────────────────────────────────────────────────────── */
+.btn-gradient {
+  background: linear-gradient(135deg, #14b8a6, #10b981);
+  color: #fff;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.btn-gradient:hover:not(:disabled) {
+  opacity: 0.9;
+}
+.btn-gradient:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* ─── Glass card ───────────────────────────────────────────────────────────── */
+.glass-card {
+  @apply bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700;
+}
