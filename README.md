@@ -1,3 +1,5 @@
+Live demo: https://chatflow-production-b920.up.railway.app/
+
 # 💬 ChatFlow — WhatsApp-Style Real-Time Chat App
 
 A production-quality, full-stack real-time messaging application built with React 18, Node.js, Socket.IO, and MongoDB. Features email OTP authentication, real-time messaging, delivery/read receipts, typing indicators, image sharing, dark mode, and more.
